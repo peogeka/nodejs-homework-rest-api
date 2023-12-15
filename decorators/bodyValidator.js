@@ -1,4 +1,4 @@
-import { HttpError } from "../helpers/index.js";
+import { HttpError } from "../helpers/HttpError.js";
 
 const bodyValidator = (schema) => (req, res, next) => {
    const { error } = schema.validate(req.body);
