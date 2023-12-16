@@ -1,5 +1,4 @@
 import { controlWrapper } from '../decorators/index.js';
-
 import Contact from '../models/Contact.js';
 import { HttpError } from "../helpers/HttpError.js";
 
