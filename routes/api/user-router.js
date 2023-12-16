@@ -4,7 +4,6 @@ import { authentication, isEmptyBody } from '../../middlewares/index.js';
 import bodyValidator from '../../decorators/bodyValidator.js';
 import {  SignInSchema, SignUpSchema, SubscriptionSchema } from '../../models/User.js';
 
-
 const router = express.Router();
 
 router.post('/register', isEmptyBody, bodyValidator(SignUpSchema), userController.register);
