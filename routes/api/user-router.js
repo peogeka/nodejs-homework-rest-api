@@ -4,7 +4,7 @@ import { authentication, isEmptyBody } from '../../middlewares/index.js';
 import bodyValidator from '../../decorators/bodyValidator.js';
 import {  SignInSchema, SignUpSchema, SubscriptionSchema } from '../../models/User.js';
 
-const PORT = 3000;
+
 
 const router = express.Router();
 
