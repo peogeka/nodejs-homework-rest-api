@@ -1,0 +1,1 @@
+export {default as avatarRenamer} from "./avatarRenamer.js"

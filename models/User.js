@@ -27,7 +27,11 @@ const userSchema = new Schema({
    enum: subscriptionType,
    default: "starter"
  },
- token: String
+ avatarURL: String,
+ token: {
+   type: String,
+   default: null
+ },
 }, {versionKey: false, timestamps: true});
 
 userSchema.post("save", handleSaveError);
@@ -38,34 +42,34 @@ const User = model("user", userSchema);
 
 export const SignUpSchema = Joi.object({
    username: Joi.string().required().min(3).messages({
-      "any.required": 'missing required field "username"',
-      "string.base": '"username" must be string',
+      "any.required": "missing required field 'username'",
+      "string.base": "'username' must be string",
    }),
    email: Joi.string().required().pattern(emailRegexp).messages({
-      "any.required": 'missing required field "email"',
-      "string.base": '"email" must be valid e-mail',
+      "any.required": "missing required field 'email'",
+      "string.pattern.base": "'email' must be valid e-mail",
    }),
    password: Joi.string().required().min(7).messages({
-      "any.required": 'missing required field "password"',
-      "string.base": '"password" must be string',
+      "any.required": "missing required field 'password'",
+      "string.base": "'password' must be string",
    }),
 });
 
 export const SignInSchema = Joi.object({
    email: Joi.string().required().pattern(emailRegexp).messages({
-      "any.required": 'missing required field "email"',
-      "string.base": '"email" must be valid e-mail',
+      "any.required": "missing required field 'email'",
+      "string.pattern.base": "'email' must be valid e-mail",
    }),
    password: Joi.string().required().min(7).messages({
-      "any.required": 'missing required field "password"',
-      "string.base": '"password" must be string',
+      "any.required": "missing required field 'password'",
+      "string.base": "'password' must be string",
    }),
 });
 
 export const SubscriptionSchema = Joi.object({
    subscription: Joi.string().required().valid(...subscriptionType).messages({
-      "any.required": 'missing required field "subscription"',
-      "string.base": `"subscription" must be one of ${subscriptionType}`,
+      "any.required": "missing required field 'subscription'",
+      "string.base": `'subscription' must be one of ${subscriptionType}`,
    }),
 })
 
