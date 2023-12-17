@@ -32,6 +32,14 @@ const userSchema = new Schema({
    type: String,
    default: null
  },
+ verify: {
+   type: Boolean,
+   default: false,
+ },
+ verificationToken: {
+   type: String,
+   required: [true, 'Verification token is required'],
+ },
 }, {versionKey: false, timestamps: true});
 
 userSchema.post("save", handleSaveError);
@@ -63,6 +71,13 @@ export const SignInSchema = Joi.object({
    password: Joi.string().required().min(7).messages({
       "any.required": "missing required field 'password'",
       "string.base": "'password' must be string",
+   }),
+});
+
+export const VerifySchema = Joi.object({
+   email: Joi.string().required().pattern(emailRegexp).messages({
+      "any.required": "missing required field 'email'",
+      "string.pattern.base": "'email' must be valid e-mail",
    }),
 });
 

@@ -61,7 +61,6 @@ const updateFavoriteById = async (req, res, next)=>{
 
 const deleteAll = async (req, res, next)=>{
    const result = await Contact.deleteMany();
-   console.log(result);
    if (!result){
       next(new HttpError(404, "X3 what wrong"))
    }
