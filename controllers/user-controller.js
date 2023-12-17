@@ -56,13 +56,13 @@ const subscriptionUpdate = async (req, res, next)=>{
 }
 
 const uploadAvatar = async (req, res, next)=>{
-   const {path: tempPath, filename} = req.file;
+   const {path: tmpPath, filename} = req.file;
    const {_id, username} = req.user;
    const newfilename = avatarRenamer(filename, username);
    const newPath = path.join(avatarPath, newfilename);
    try {
-      (await Jimp.read(tempPath)).resize(250, 250).quality(75).write(newPath);
-      await fs.unlink(tempPath);
+      (await Jimp.read(tmpPath)).resize(250, 250).quality(75).write(newPath);
+      await fs.unlink(tmpPath);
    } catch (error) {
       error.message = "File operation error. Please try again later"
       return next(error)
